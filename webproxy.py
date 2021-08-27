@@ -4,7 +4,7 @@ import socketserver
 import cfscrape
 import base64
 
-local_ip = socket.gethostbyname(socket.gethostname())
+LOCAL_IP = socket.gethostbyname(socket.gethostname())
 PORT = 8000
 
 class Proxy(http.server.SimpleHTTPRequestHandler):
@@ -30,6 +30,7 @@ class Proxy(http.server.SimpleHTTPRequestHandler):
 		htmlEncoded = encoded = base64.b64encode(htmlData).decode("utf-8")
 		self.wfile.write(bytes(htmlEncoded, "utf8"))
 
-httpd = socketserver.ThreadingTCPServer((local_ip, PORT), Proxy)
-print("serving at port ", PORT)
+httpd = socketserver.ThreadingTCPServer((LOCAL_IP, PORT), Proxy)
+print("Serving on IP:\t",LOCAL_IP)
+print("Serving on Port:\t", PORT)
 httpd.serve_forever()
