@@ -12,7 +12,7 @@ class Proxy(http.server.SimpleHTTPRequestHandler):
 		htmlData = bytes()
 		try:
 			base64DecodedURL = base64.decodebytes(url.encode('utf8'))
-			print(base64DecodedURL)
+			print(str(base64DecodedURL))
 			scraper = cfscrape.create_scraper()
 			sessionHeaders = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"}
 			htmlData = scraper.get(base64DecodedURL, headers=sessionHeaders).content
