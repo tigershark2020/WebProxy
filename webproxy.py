@@ -24,7 +24,7 @@ class Proxy(http.server.SimpleHTTPRequestHandler):
 			print(base64_decoded_url.decode('utf8'))
 			scraper = cfscrape.create_scraper()
 			sessionHeaders = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36"}
-			binData = scraper.get(base64_decoded_url, headers=sessionHeaders, stream=True).content
+			binData = scraper.get(base64_decoded_url, headers=sessionHeaders, stream=True, verify=False).content
 		except Exception as error:
 			print(error)
 			binData = bytes(str("").encode("utf-8"))
